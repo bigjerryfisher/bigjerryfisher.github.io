@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jeremiah Fiifi Tetteh · BiGJerryFisher</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Clash+Display:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<!-- LinkedIn Badge Script -->
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -161,16 +163,54 @@ nav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,.93);backdrop-
 .mission-q{font-family:'Instrument Serif',serif;font-size:clamp(1.3rem,2.8vw,2rem);font-style:italic;font-weight:400;line-height:1.55;max-width:740px;margin:0 auto 1.8rem;color:rgba(255,255,255,.88)}
 .mission-attr{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.32)}
 
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+/* ── Contact grid: 3-column on desktop to accommodate LinkedIn badge ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:1px;background:var(--border)}
 .contact-left{background:var(--card);padding:3rem 2.5rem}
 .contact-left h2{font-family:'Clash Display',sans-serif;font-size:2rem;font-weight:700;letter-spacing:-.03em;margin-bottom:1rem}
 .contact-left p{font-size:.83rem;color:var(--muted);line-height:1.78;margin-bottom:2rem}
-.contact-links{display:flex;flex-direction:column;gap:1px;background:var(--border)}
-.clink{background:var(--card);padding:1.1rem 1.4rem;display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--ink);font-size:.8rem;transition:background .2s;justify-content:space-between}
+.contact-links{background:var(--card)}
+.clink{background:var(--card);padding:1.1rem 1.4rem;display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--ink);font-size:.8rem;transition:background .2s;justify-content:space-between;border-bottom:1px solid var(--border)}
+.clink:last-child{border-bottom:none}
 .clink:hover{background:var(--surface)}
 .clink-left{display:flex;align-items:center;gap:1rem}
 .clink-icon{width:32px;height:32px;background:var(--surface);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0;color:var(--muted);font-family:'Clash Display',sans-serif;font-weight:600}
 .clink-sub{font-size:.68rem;color:var(--muted)}
+
+/* ── LinkedIn Badge Panel ── */
+.contact-badge{
+  background:var(--ink);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:2rem 1.8rem;
+  gap:1.4rem;
+  min-width:220px;
+  position:relative;
+}
+.contact-badge::before{
+  content:'CONNECT ON';
+  position:absolute;
+  top:1.4rem;
+  left:0;right:0;
+  text-align:center;
+  font-size:.6rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.28);
+}
+/* Override LinkedIn badge colours to blend with dark panel */
+.contact-badge .LI-profile-badge{
+  border-radius:4px;
+  overflow:hidden;
+}
+.li-badge-caption{
+  font-size:.63rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.3);
+  text-align:center;
+}
 
 footer{background:var(--ink);color:rgba(255,255,255,.3);padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.7rem;letter-spacing:.07em}
 footer em{color:rgba(255,255,255,.6);font-style:normal}
@@ -178,7 +218,7 @@ footer em{color:rgba(255,255,255,.6);font-style:normal}
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 
-@media(max-width:900px){
+@media(max-width:960px){
   .hero{grid-template-columns:1fr;min-height:auto}
   .hero-right{flex-direction:row;flex-wrap:wrap}
   .hero-stat-block{flex:1;min-width:150px}
@@ -186,15 +226,18 @@ footer em{color:rgba(255,255,255,.6);font-style:normal}
   .feat-metrics{grid-template-columns:repeat(4,1fr)}
   .bento-3{grid-template-columns:1fr 1fr}
   .skills-wrap{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr}
+  /* Contact: stack badge below the two columns */
+  .contact-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto auto}
+  .contact-badge{grid-column:1/-1;flex-direction:row;justify-content:center;padding:2rem;min-width:unset;gap:2rem}
+  .contact-badge::before{top:unset;bottom:unset;left:2rem;right:unset;writing-mode:unset;letter-spacing:.14em}
   .mw-spotlight{grid-template-columns:1fr}
   .journals-grid{grid-template-columns:1fr}
   .reviewer-strip{grid-template-columns:1fr}
-  nav .nav-links{display:none}
 }
 @media(max-width:600px){
   nav{padding:0 1rem}
   .nav-status{font-size:.65rem}
+  nav .nav-links{display:none}
   .hero-left{padding:2.5rem 1.2rem}
   .hero-name{font-size:2.4rem}
   .hero-bio{font-size:.82rem}
@@ -230,6 +273,9 @@ footer em{color:rgba(255,255,255,.6);font-style:normal}
   .tl-desc{font-size:.75rem}
   .mission{padding:3.5rem 1.2rem}
   .mission-q{font-size:1.1rem}
+  /* Contact: fully stacked */
+  .contact-grid{grid-template-columns:1fr}
+  .contact-badge{grid-column:1;flex-direction:column;padding:2.2rem 1.2rem}
   .contact-left{padding:2rem 1.2rem}
   .contact-left h2{font-size:1.6rem}
   .clink{padding:.9rem 1rem;font-size:.75rem}
@@ -518,7 +564,7 @@ footer em{color:rgba(255,255,255,.6);font-style:normal}
     </div>
     <div class="skill-col">
       <div class="skill-col-title">Research, Safety & Programming</div>
-      <div class="skill-item">Peer Review (4 top journals)<div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+      <div class="skill-item">Peer Review (5 top journals)<div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
       <div class="skill-item">Python — Data Analysis<div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
       <div class="skill-item">ISO 9001:2015<div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
       <div class="skill-item">COSHH Risk Assessment<div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
@@ -585,21 +631,49 @@ footer em{color:rgba(255,255,255,.6);font-style:normal}
   <div class="mission-attr">Jeremiah Fiifi Tetteh · AI & IoT Solutions Engineer · Accra, Ghana</div>
 </div>
 
+<!-- ── Contact ── -->
 <section id="contact">
-<div class="contact-grid">
-  <div class="contact-left reveal">
-    <h2>Let's<br>Connect</h2>
-    <p>Open to research collaborations, peer reviewing, embedded systems projects, AI consulting, and mentorship. Based in Accra, Ghana — ready for relocation globally.</p>
-    <a href="mailto:tettehjeremiah@ymail.com" class="btn btn-dark">Send a message →</a>
+  <div class="contact-grid">
+
+    <!-- Left: CTA copy -->
+    <div class="contact-left reveal">
+      <h2>Let's<br>Connect</h2>
+      <p>Open to research collaborations, peer reviewing, embedded systems projects, AI consulting, and mentorship. Based in Accra, Ghana — ready for relocation globally.</p>
+      <a href="mailto:tettehjeremiah@ymail.com" class="btn btn-dark">Send a message →</a>
+    </div>
+
+    <!-- Middle: contact links -->
+    <div class="contact-links reveal">
+      <a href="mailto:tettehjeremiah@ymail.com" class="clink"><div class="clink-left"><div class="clink-icon">@</div><div><div>tettehjeremiah@ymail.com</div><div class="clink-sub">Primary email</div></div></div><span>→</span></a>
+      <a href="mailto:tettehjeremiah04@gmail.com" class="clink"><div class="clink-left"><div class="clink-icon">@</div><div><div>tettehjeremiah04@gmail.com</div><div class="clink-sub">Research & review</div></div></div><span>→</span></a>
+      <a href="https://github.com/bigjerryfisher" class="clink" target="_blank"><div class="clink-left"><div class="clink-icon">GH</div><div><div>github.com/bigjerryfisher</div><div class="clink-sub">Code & projects</div></div></div><span>→</span></a>
+      <a href="https://www.linkedin.com/in/jeremiah-t-a20116a1" class="clink" target="_blank"><div class="clink-left"><div class="clink-icon">in</div><div><div>linkedin.com/in/jeremiah-t-a20116a1</div><div class="clink-sub">Professional network</div></div></div><span>→</span></a>
+      <a href="tel:+233557260908" class="clink"><div class="clink-left"><div class="clink-icon">☎</div><div><div>+233 (055) 726 0908</div><div class="clink-sub">Accra, Ghana</div></div></div><span>→</span></a>
+    </div>
+
+    <!-- Right: LinkedIn Badge Panel -->
+    <div class="contact-badge reveal">
+      <div
+        class="badge-base LI-profile-badge"
+        data-locale="en_US"
+        data-size="medium"
+        data-theme="dark"
+        data-type="VERTICAL"
+        data-vanity="jeremiah-t-a20116a1"
+        data-version="v1">
+        <!-- Fallback link while the LinkedIn JS initialises -->
+        <a class="badge-base__link LI-simple-link"
+           href="https://gh.linkedin.com/in/jeremiah-t-a20116a1?trk=profile-badge"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="color:#00e096;font-size:.72rem;text-decoration:none;letter-spacing:.08em">
+          Jeremiah T. → LinkedIn
+        </a>
+      </div>
+      <span class="li-badge-caption">Verified Profile</span>
+    </div>
+
   </div>
-  <div class="contact-links reveal">
-    <a href="mailto:tettehjeremiah@ymail.com" class="clink"><div class="clink-left"><div class="clink-icon">@</div><div><div>tettehjeremiah@ymail.com</div><div class="clink-sub">Primary email</div></div></div><span>→</span></a>
-    <a href="mailto:tettehjeremiah04@gmail.com" class="clink"><div class="clink-left"><div class="clink-icon">@</div><div><div>tettehjeremiah04@gmail.com</div><div class="clink-sub">Research & review</div></div></div><span>→</span></a>
-    <a href="https://github.com/bigjerryfisher" class="clink" target="_blank"><div class="clink-left"><div class="clink-icon">GH</div><div><div>github.com/bigjerryfisher</div><div class="clink-sub">Code & projects</div></div></div><span>→</span></a>
-    <a href="https://www.linkedin.com/in/jeremiah-t-a20116a1" class="clink" target="_blank"><div class="clink-left"><div class="clink-icon">in</div><div><div>linkedin.com/in/jeremiah-t-a20116a1</div><div class="clink-sub">Professional network</div></div></div><span>→</span></a>
-    <a href="tel:+233557260908" class="clink"><div class="clink-left"><div class="clink-icon">☎</div><div><div>+233 (055) 726 0908</div><div class="clink-sub">Accra, Ghana</div></div></div><span>→</span></a>
-  </div>
-</div>
 </section>
 
 <footer>
@@ -608,9 +682,11 @@ footer em{color:rgba(255,255,255,.6);font-style:normal}
 </footer>
 
 <script>
+/* ── Scroll-reveal ── */
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
+/* ── Hero counter animations ── */
 function countUp(el,target,suffix,dur){
   if(!el)return;
   const start=performance.now();
@@ -622,7 +698,6 @@ function countUp(el,target,suffix,dur){
   };
   requestAnimationFrame(run);
 }
-
 const heroObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
@@ -636,6 +711,7 @@ const heroObs=new IntersectionObserver(entries=>{
 const hr=document.querySelector('.hero-right');
 if(hr)heroObs.observe(hr);
 
+/* ── Skill bar animations ── */
 const skillsObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
