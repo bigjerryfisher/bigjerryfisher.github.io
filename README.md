@@ -38,6 +38,7 @@ Built with: **HTML · CSS (custom design system) · Vanilla JS**
 ## Contact
 
 - 📧 [tettehjeremiah@ymail.com](mailto:tettehjeremiah@ymail.com)
+- 🏫 [jtetteh@gctu.edu.gh](mailto:jtetteh@gctu.edu.gh) (GCTU)
 - 💼 [linkedin.com/in/jeremiah-t-a20116a1](https://www.linkedin.com/in/jeremiah-t-a20116a1)
 - 🐙 [github.com/bigjerryfisher](https://github.com/bigjerryfisher)
 - 🆔 [ORCID 0009-0006-0819-2088](https://orcid.org/0009-0006-0819-2088)
