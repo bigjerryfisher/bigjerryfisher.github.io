@@ -724,5 +724,26 @@ requestAnimationFrame(frame);addEventListener("resize",()=>still&&frame(0));
 })();
 </script>
 
+<script>
+/* Fast, accurate jumps from the menu: quick glide, lands below the sticky bar, re-aims once photos load */
+(function(){
+  var nav=document.querySelector('header.nav');
+  function off(){return nav&&getComputedStyle(nav).position==='sticky'?nav.offsetHeight+8:8}
+  function y(el){return el.getBoundingClientRect().top+scrollY-off()}
+  function go(el){
+    var start=scrollY,end=y(el),d=end-start,t0=performance.now(),dur=Math.min(450,180+Math.abs(d)/40);
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){scrollTo(0,end);return}
+    (function step(now){var p=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-p,3);scrollTo(0,start+d*e);
+      if(p<1)requestAnimationFrame(step);else{setTimeout(function(){var e2=y(el);if(Math.abs(e2-scrollY)>4)scrollTo(0,e2)},250);setTimeout(function(){var e3=y(el);if(Math.abs(e3-scrollY)>4)scrollTo(0,e3)},700)}})(t0);
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="#"]');if(!a)return;
+    var id=a.getAttribute('href').slice(1),el=id&&document.getElementById(id);if(!el)return;
+    e.preventDefault();
+    el.querySelectorAll('img[loading="lazy"]').forEach(function(i){i.loading='eager'});
+    go(el);history.replaceState(null,'','#'+id);
+  });
+})();
+</script>
 </body>
 </html>
