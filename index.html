@@ -325,6 +325,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
   .hero .cta{margin-top:16px}
 }
 @media (max-width:480px){.hero .cta{flex-wrap:nowrap;gap:8px}.hero .cta .btn,.hero .cta .btn.solid{flex:1 1 auto;padding:11px 8px;font-size:.88rem;white-space:nowrap}}
+@media (max-width:520px){
+  .aspex.rene{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:10px}
+  .aspex.rene figure{grid-column:auto}
+  .aspex.rene figure:first-child{grid-row:1/3}
+  .aspex.rene figure:first-child img{height:358px;object-position:50% 25%}
+  .aspex.rene figure:not(:first-child) img{height:150px}
+}
 </style>
 
 </head>
