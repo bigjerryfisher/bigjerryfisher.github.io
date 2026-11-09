@@ -317,6 +317,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
   .aspex figure:last-child img{height:auto}
   .aspex figcaption,.rene figcaption{font-size:.6rem}
 }
+/* Phones: hero text uses the full width so the photo comes up sooner */
+@media (max-width:640px){
+  .hero .lede{max-width:none;font-size:.95rem;line-height:1.6;margin-bottom:20px}
+  .hero .wrap.top{gap:22px;padding-block:20px 28px}
+  .hero h1{margin-bottom:4px}
+  .hero .cta{margin-top:16px}
+}
+@media (max-width:480px){.hero .cta{flex-wrap:nowrap;gap:8px}.hero .cta .btn,.hero .cta .btn.solid{flex:1 1 auto;padding:11px 8px;font-size:.88rem;white-space:nowrap}}
 </style>
 
 </head>
