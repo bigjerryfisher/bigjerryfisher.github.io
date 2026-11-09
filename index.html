@@ -332,6 +332,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
   .aspex.rene figure:first-child img{height:358px;object-position:50% 25%}
   .aspex.rene figure:not(:first-child) img{height:150px}
 }
+/* Phones: small portrait at the top, text below at full width */
+@media (max-width:640px){
+  .hero .wrap.top{gap:18px;padding-block:18px 28px}
+  .hero .portrait{order:-1;width:150px;max-width:150px;justify-self:center}
+  .hero .portrait figcaption{display:none}
+  .hero .portrait .badge,.portrait .badge{width:58px;height:58px;left:-22px;bottom:14px;padding:3px}
+}
 </style>
 
 </head>
